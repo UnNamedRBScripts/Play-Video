@@ -1,0 +1,29 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "VideoScreenGui"
+screenGui.Parent = playerGui
+
+local videoFrame = Instance.new("VideoFrame")
+videoFrame.Name = "VideoFrame"
+videoFrame.Size = UDim2.new(1, 0, 1, 0)  -- Full screen
+videoFrame.Position = UDim2.new(0, 0, 0, 0)
+videoFrame.Video = "rbxassetid://5608410985"  -- Your video asset ID
+videoFrame.Parent = screenGui
+
+-- Add debugging print statements
+print("ScreenGui and VideoFrame created. Attempting to play video.")
+
+-- Play the video
+videoFrame.Playing = true
+print("Video started playing.")
+
+-- Stop the video after 3 seconds
+spawn(function()
+    wait(2)
+    videoFrame.Playing = false
+    print("Video stopped.")
+    screenGui:Destroy()  -- Optionally remove the GUI after stopping the video
+    print("ScreenGui destroyed.")
+end)
